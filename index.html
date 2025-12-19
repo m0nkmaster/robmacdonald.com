@@ -156,6 +156,15 @@
       color: var(--orange);
     }
 
+    .article--project:hover {
+      border-color: var(--cyan);
+      box-shadow: 0 0 20px rgba(0, 200, 255, 0.1);
+    }
+
+    .article--project:hover .article-title {
+      color: var(--cyan);
+    }
+
     .article-desc {
       font-size: 0.625rem;
       color: var(--text-muted);
@@ -189,16 +198,16 @@
         </svg>
         GitHub
       </a>
-      
-      <a href="https://synthtools.robmacdonald.com" class="link link--synth" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path d="M3 12h2l2-4 3 8 3-6 2 4h6"/>
-          <circle cx="3" cy="12" r="1"/>
-          <circle cx="21" cy="14" r="1"/>
-        </svg>
-        Synth Tools
-      </a>
     </nav>
+    
+    <section class="articles">
+      <h2 class="section-title">Projects</h2>
+      
+      <a href="https://synthtools.robmacdonald.com" class="article article--project" target="_blank" rel="noopener">
+        <h3 class="article-title article-title--cyan">Synth Tools</h3>
+        <p class="article-desc">Web-based tools for OP-1 and OP-Z synthesizers. Create drum kits, generate synth patches with AI, and convert audio samples.</p>
+      </a>
+    </section>
     
     <section class="articles">
       <h2 class="section-title">Writing</h2>
