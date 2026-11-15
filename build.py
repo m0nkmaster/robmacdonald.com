@@ -16,6 +16,12 @@ SITE = "https://robmacdonald.com"
 PAGE = """<!DOCTYPE html>
 <html lang="en-GB">
 <head>
+  <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-M8LV8Z5P"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){{dataLayer.push(arguments);}}
+    gtag('js', new Date());
+  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{title} | Rob MacDonald</title>
