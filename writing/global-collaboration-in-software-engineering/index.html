@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Global Collaboration in Software Engineering | Rob MacDonald</title>
+  <meta name="description" content="How open source and big tech succeed with distributed teams through async communication, quality documentation, and customer focus.">
+  <link rel="canonical" href="https://robmacdonald.com/writing/global-collaboration-in-software-engineering/">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Global Collaboration in Software Engineering">
+  <meta property="og:description" content="How open source and big tech succeed with distributed teams through async communication, quality documentation, and customer focus.">
+  <meta property="og:url" content="https://robmacdonald.com/writing/global-collaboration-in-software-engineering/">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/writing/article.css">
+</head>
+<body>
+  <header class="top">
+    <a href="/" class="home">Rob<span class="accent">.</span>MacDonald</a>
+    <a href="/writing/" class="nav">Writing</a>
+  </header>
+  <main>
+    <article>
+      <p class="meta"><time datetime="2025-03-14">14 March 2025</time> &middot; 6 min read</p>
+      <h1>Global Collaboration in Software Engineering</h1>
+      <p class="lede">How open source and big tech succeed with distributed teams through async communication, quality documentation, and customer focus.</p>
+      <div class="prose">
+<p>Let me introduce the Synthstrom Deluge - a 'groove box'. It lets musicians create complete electronic music tracks from scratch. Electronic music has become my latest hobby and I love the Deluge, but what makes this device fascinating isn't my obsession with it. Two years ago, Synthstrom made a bold move: they released the device firmware as open source.</p>
+<figure><img src="/images/deluge.jpg" alt="The Synthstrom Deluge"><figcaption>Synthstrom Deluge - my new favourite toy</figcaption></figure>
+
+<p>The Deluge’s open source firmware development processes are <em>relaxed</em> by corporate standards. No roadmaps, sprint planning, or formal hierarchies. Just a global group of musicians and programmers working across time zones. This isn't a simple project—it's sophisticated music hardware running complex C &amp; C++ firmware handling audio processing to user interface design. Yet they're shipping features faster than many well-funded tech teams.</p>
+<p>In the first year of being open source, there have been three high-quality releases introducing dozens of well-received new features.</p>
+<p>This success story illustrates what I want to share about global software development.</p>
+<hr />
+<p>Over 25 years, I've seen software development from several angles. From working in a four-person startup to heading up a team of 30+ at Amazon Prime Video. I've led teams across Poland, Slovakia, China, and the UK.</p>
+<p>I've contributed to open source projects along the way, and what I've learnt is that the best practices in big-tech and open source are more similar than you think.</p>
+<p>My thesis is simple: three fundamental principles drive the success of global collaborative working:</p>
+<ol>
+<li>Asynchronous communication first</li>
+<li>The importance of quality documentation</li>
+<li>A clear customer focus.</li>
+</ol>
+<p>These principles sound simple and obvious. But implementing them requires challenging deeply held assumptions about how good software teams work.</p>
+<h2>Seeing Both Sides</h2>
+<p>I recently contributed to the Deluge project; adding new features, reviewing pull requests and realised I’m collaborating with developers from New Zealand to New York building complex software at scale, without many of the processes that we expect in our day jobs. No daily stand-ups. No quarterly planning. No ‘management’. But it’s working really well. My GitHub activity shows I’ve collaborated with over ten developers across various time zones in two months.</p>
+<p>Thinking back, Amazon's structured corporate processes and open source's volunteer-led approach share similarities in their operations.</p>
+<h2>Avoid Always-On Communication</h2>
+<blockquote>
+<p>Hi! Got a minute? 👋</p>
+</blockquote>
+<p>This is a bug bear of mine. We've replaced the in-person disruption of shoulder-tapping with the digital equivalent scaled x10 using Slack and Teams. The result? Engineers regularly context-switching, the stress of responding to "always-on" availability, and knowledge split across private messages and chat channels. This can work well with a close centrally located team, but it's a weakness at a global scale and during onboarding.</p>
+<p>Open source takes a different approach. Most have a chat platform, but these are primarily used for chit-chat. Important communications happen in GitHub issues, discussions, and pull requests. Focused, single-threaded discussions that stay on topic and create a permanent record. No demand for an instant response.</p>
+<p>While slower, this communication is more efficient, leading to faster progress. Without the ping-pong of chat messages and impromptu meetings, developers can maintain focus and manage their time. Important decisions get captured rather than buried in message threads. Teams across time zones can contribute equally, rather than being nudged into someone else's "standard" working hours. The playing field is levelled.</p>
+<p>I recommend choosing minimal, integrated, async tools and sticking to them. Whether it’s GitHub, Jira, or something else, org-wide adoption and clear usage expectations matter. Amazon mostly uses internal tools - not the most feature-rich but adopted across the company from facilities, HR, to the teams owning the video streaming APIs, all teams use the same tools. And they are integrated into everything.</p>
+<p>Knowledge accumulates naturally, becoming more refined and useful over time. Code repositories become not just a collection of code, but a living knowledge base that grows with the project.</p>
+<p>This doesn't mean abandoning modern tools or returning to just emails. As leaders, it's about being intentional about team communication.</p>
+<h2>Intentional Documentation</h2>
+<p>"Writing is thinking" - this mantra is drilled into every Amazonian. With teams across London and Beijing, I saw its importance. For every significant decision, product or technical, we'd write a two to six-page narrative document. The process was simple but powerful: write a proposal, circulate it for comments, and collect feedback. While we often reviewed these documents in meetings (with the famous 20-minute silent reading starts), being distributed, my teams had little in-office overlap. Alternatively, we ensured every stakeholder provided their comments before the author revised the document. We included a check box for each person to confirm they'd reviewed the document and communicated through annotated comments. This approach means:</p>
+<ul>
+<li>Engineers across time zones review proposals at their convenience.</li>
+<li>Non-native English speakers have time to process and respond thoughtfully.</li>
+<li>Knowledge accumulates into an evolving knowledge base.</li>
+</ul>
+<p>It's fascinating how closely this mirrors successful open source projects. In the Deluge project, pull request checks enforce documentation updates. READMEs and Wikis are treated as code and product specifications, not afterthoughts. When I contributed a change recently, much of my PR’s discussion focused on improving documentation rather than implementation.</p>
+<p>This documentation-first approach creates a self-sustaining cycle in corporate and open source environments. Knowledge becomes discoverable and persistent, unlike chat tool conversations.</p>
+<p>PowerPoint isn't banned at Amazon, but I never wrote a presentation there. Presentations are synchronous and important information comes from discussions. Time is spent on making it look nice. A clear narrative forces precise thinking and a lasting record for revisiting.</p>
+<h2>Customer Focus is key</h2>
+<p>Great documentation and async communication are powerful tools. But what motivates people to create and read docs? What drives engineers to write detailed pull requests, hold others accountable, and improve documentation?</p>
+<p>In open source, the answer is clear. Contributors join projects like Deluge because they believe in what they're building, and they're often users of the software. Everyone understands why they are there.</p>
+<p>When people care about the outcome, traditional management structures become less critical. We see this in successful open source projects; good practices emerge naturally because contributors care.</p>
+<p>The open source community has been customer-focused from the start. It’s not just about finding the right tools or processes. The most important thing is that when everyone knows what they are building, why, and for who, collaboration comes for free and location becomes irrelevant.</p>
+<p>This understanding is at Amazon’s core and summed up in their most often quoted <a href="https://www.amazon.jobs/content/en/our-workplace/leadership-principles">“Leadership Principle”</a>:  </p>
+<p>Customer Obsession.</p>
+<blockquote>
+<p>“Leaders start with the customer and work backwards. They work vigorously to earn and keep customer trust. They obsess over customers.”</p>
+</blockquote>
+<p>This is demonstrated in the PR FAQ (Press Release and Frequently Asked Questions) process, which is a key Amazon document that serves two main purposes: it validates that an idea solves a real customer need and captures the rationale for future reference.</p>
+<h2>Summing up</h2>
+<p>Here are my thoughts: whether you’re managing a distributed corporate team or contributing to an open source project, the fundamentals remain the same: prioritise asynchronous communication, insist on quality documentation, and maintain a focus on the customer.</p>
+<p>These principles work because they address the core challenges of global collaboration: time zone differences, knowledge sharing, and team alignment. When implemented thoughtfully, they create an environment where location is a non-issue.</p>
+<h2>Next steps</h2>
+<p>Here are a few ideas to try out.</p>
+<ol>
+<li><strong>Make Async Default</strong>
+  - Keep key information out of chat and in persistent docs.
+  - Write complete questions instead of "Hi!" or "Got a minute?"
+  - Make it clear that out-of-hours responses are not expected.</li>
+<li><strong>Build a Documentation Culture</strong>
+  - Enforce document updates in pull requests and your definition of done.
+  - Try a document read meeting instead of a presentation.
+  - For remote teams, try async document reviews with checkboxes for stakeholders.</li>
+<li><strong>Start with the Customer</strong>
+  - Try writing a PR-FAQ document for your next feature.
+  - Run a “Walk the store” session - get your team using your product.</li>
+</ol>
+<p>As leaders, we must model these approaches consistently and set clear expectations. Teams follow your example: if you respect people’s time, favour async communication, prioritise documentation, and demonstrate genuine customer focus, they will too.</p>
+<p>Our behaviour shapes how global teams work together.</p>
+      </div>
+      <p class="orig">Originally published on <a href="https://www.linkedin.com/pulse/global-collaboration-software-engineering-rob-macdonald-ys1gf" rel="noopener">LinkedIn</a>.</p>
+    </article>
+  </main>
+  <footer class="footer"><a href="/">&larr; robmacdonald.com</a> &middot; &copy; 2026</footer>
+</body>
+</html>

@@ -171,6 +171,43 @@
       line-height: 1.6;
     }
 
+    .article--static:hover {
+      border-color: var(--border);
+      box-shadow: none;
+    }
+
+    .article--static:hover .article-title {
+      color: var(--text);
+    }
+
+    .tag {
+      font-size: 0.55rem;
+      font-weight: 400;
+      color: var(--cyan);
+      border: 1px solid var(--cyan);
+      border-radius: 3px;
+      padding: 0.1em 0.4em;
+      margin-left: 0.4em;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      vertical-align: middle;
+    }
+
+    .all-link {
+      display: block;
+      text-align: center;
+      font-size: 0.625rem;
+      color: var(--text-muted);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      text-decoration: none;
+      margin-top: 0.5rem;
+    }
+
+    .all-link:hover {
+      color: var(--orange);
+    }
+
     .footer {
       margin-top: 4rem;
       font-size: 0.625rem;
@@ -203,33 +240,45 @@
     <section class="articles">
       <h2 class="section-title">Writing</h2>
       
-      <a href="https://www.linkedin.com/pulse/how-hell-does-know-rob-macdonald-uwgbe" class="article" target="_blank" rel="noopener">
+      <a href="/writing/engineers-when-code-is-cheap/" class="article">
+        <h3 class="article-title">Engineers when code is cheap</h3>
+        <p class="article-desc">Code is heading towards free. What's left is knowing what to build, specifying it well and knowing it's right.</p>
+      </a>
+      
+      <a href="/writing/how-the-hell-does-it-know-that/" class="article">
         <h3 class="article-title">How the hell does it know that?</h3>
         <p class="article-desc">What a shedload of Markdown files taught me about giving AI context.</p>
       </a>
       
-      <a href="https://www.linkedin.com/pulse/afk-laid-back-way-work-ai-bigger-features-rob-macdonald-viewe/" class="article" target="_blank" rel="noopener">
+      <a href="/writing/afk/" class="article">
         <h3 class="article-title">afk: From Requirements to Code While You're AFK</h3>
         <p class="article-desc">Introducing the 'Ralph' approach to AI coding — fresh context each iteration, no chat bloat. Let AI tackle bigger features while you step away.</p>
       </a>
       
-      <a href="https://www.linkedin.com/pulse/global-collaboration-software-engineering-rob-macdonald-ys1gf" class="article" target="_blank" rel="noopener">
+      <a href="/writing/product-engineering-and-ai/" class="article">
+        <h3 class="article-title">Product Engineering and AI</h3>
+        <p class="article-desc">Insights from a panel discussion on how AI is reshaping software development and the evolving role of engineers.</p>
+      </a>
+      
+      <a href="/writing/global-collaboration-in-software-engineering/" class="article">
         <h3 class="article-title">Global Collaboration in Software Engineering</h3>
         <p class="article-desc">How open source and big tech succeed with distributed teams through async communication, quality documentation, and customer focus.</p>
       </a>
       
-      <a href="https://www.linkedin.com/pulse/product-engineering-ai-redefining-software-rob-macdonald-lkiae" class="article" target="_blank" rel="noopener">
-        <h3 class="article-title">Product Engineering and AI</h3>
-        <p class="article-desc">Insights from a panel discussion on how AI is reshaping software development and the evolving role of engineers.</p>
-      </a>
+      <a href="/writing/" class="all-link">All writing &rarr;</a>
     </section>
     
     <section class="articles">
       <h2 class="section-title">Projects</h2>
       
-      <a href="https://github.com/m0nkmaster/afk" class="article article--project" target="_blank" rel="noopener">
-        <h3 class="article-title">afk</h3>
-        <p class="article-desc">A tool-agnostic CLI for AI-assisted development. Break requirements into tasks, spawn fresh AI instances, and let it work while you're away from keyboard.</p>
+      <div class="article article--project article--static">
+        <h3 class="article-title">Gillie</h3>
+        <p class="article-desc">An operating model for AI-assisted knowledge work, plus an assistant that runs it. A folder of Markdown, skills and a schedule, with a local board of what needs you now.</p>
+      </div>
+      
+      <a href="https://github.com/SynthstromAudible/DelugeFirmware/pulls?q=is%3Apr+author%3Am0nkmaster" class="article article--project" target="_blank" rel="noopener">
+        <h3 class="article-title">Deluge Firmware <span class="tag">Contributor</span></h3>
+        <p class="article-desc">Open source firmware for the Synthstrom Deluge groovebox. I contribute features and fixes in C++, from audio clip start trimming to file and MIDI automation bug fixes.</p>
       </a>
       
       <a href="https://synthtools.robmacdonald.com" class="article article--project" target="_blank" rel="noopener">

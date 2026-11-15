@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>afk: From Requirements to Code While You&#x27;re AFK | Rob MacDonald</title>
+  <meta name="description" content="Introducing the &#x27;Ralph&#x27; approach to AI coding — fresh context each iteration, no chat bloat. Let AI tackle bigger features while you step away.">
+  <link rel="canonical" href="https://robmacdonald.com/writing/afk/">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="afk: From Requirements to Code While You&#x27;re AFK">
+  <meta property="og:description" content="Introducing the &#x27;Ralph&#x27; approach to AI coding — fresh context each iteration, no chat bloat. Let AI tackle bigger features while you step away.">
+  <meta property="og:url" content="https://robmacdonald.com/writing/afk/">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/writing/article.css">
+</head>
+<body>
+  <header class="top">
+    <a href="/" class="home">Rob<span class="accent">.</span>MacDonald</a>
+    <a href="/writing/" class="nav">Writing</a>
+  </header>
+  <main>
+    <article>
+      <p class="meta"><time datetime="2026-01-16">16 January 2026</time> &middot; 7 min read</p>
+      <h1>afk: From Requirements to Code While You&#x27;re AFK</h1>
+      <p class="lede">Introducing the &#x27;Ralph&#x27; approach to AI coding — fresh context each iteration, no chat bloat. Let AI tackle bigger features while you step away.</p>
+      <div class="prose">
+<p>The speed at which AI coding tools are improving is impossible to ignore. Even <a href="https://www.theregister.com/2026/01/13/linus_torvalds_vibe_coding/">Linus Torvalds is having a go</a>! If the creator of Linux is experimenting with AI-assisted coding, if you're not already, it's time to pay attention.</p>
+<p>I've been in the software industry for quite a while, and AI tooling has been a genuine game-changer for my productivity over the last couple of years. It's helped me branch out into different languages, ship side projects I'd been meaning to build for years, and explore ideas I wouldn't have tackled alone. My <a href="https://github.com/m0nkmaster/synth-tools">synth-tools</a> project - a browser-based synthesiser - is a good example. Without AI assistance, that would still be on my "one day" list.</p>
+<p>But when you start using these tools on larger features, an anti-pattern can emerge.</p>
+<h2>The Problem: Context Bloat</h2>
+<p>Long AI chat sessions get messy.</p>
+<p>You're building something substantial - a new web app, a major feature, a multi-step refactor. You start prompting. The AI responds. You clarify. It revises, it's going well. You nudge the direction. It adjusts. Five or six exchanges in, the conversation is sprawling. Even with 200,000-token context windows, you can <em>feel</em> it struggling.</p>
+<p>The model starts forgetting what you agreed earlier. It contradicts itself. It revisits decisions you already made. The output quality degrades, and you spend more time steering than thinking.</p>
+<p>This is <strong>context exhaustion</strong>. The AI has filled its working memory with false starts, abandoned approaches, and conversational noise. It's become bloated and confused.</p>
+<h2>Discovering the Ralph Approach</h2>
+<p>That's when I came across something called the <strong>Ralph Wiggum approach</strong> - or just "Ralph" for short.</p>
+<p>The concept was first articulated by <a href="https://ghuntley.com/ralph/">Geoffrey Huntley</a> in late 2025, and it's been gaining traction ever since. Matt Pocock covered it on <a href="https://aihero.dev/">AI Hero</a>, Ibrahim Pima did a deep dive on DEV Community, and it's showing up in more and more developer conversations.</p>
+<p>The idea is named after Ralph Wiggum from <em>The Simpsons</em> - a character who approaches each moment with fresh-eyed obliviousness, unburdened by what came before. In AI terms, that forgetfulness is the <em>feature</em>, not the bug.</p>
+<p>Here's the core of it:</p>
+<ol>
+<li><strong>Fresh context every iteration</strong> - Start each task with a brand-new AI instance</li>
+<li><strong>One task at a time</strong> - Kanban-style: pick up a ticket, complete it, move on</li>
+<li><strong>Memory through files, not conversation</strong> - Progress persists via git commits and  concisely captured learnings, not chat history.</li>
+</ol>
+<p>No more dragging old context forward. No more rescuing the model mid-flight. Each task gets exactly the context it needs, and nothing more.</p>
+<h2>Two Pillars: Context and Focus</h2>
+<p>Having been in the industry long enough to see patterns repeat, I immediately saw parallels with good engineering practice.</p>
+<h3>1. Context Without Bloat</h3>
+<p>In the Ralph approach, context is something you <em>prepare</em>, not something you accumulate. You don't patch it mid-run. You don't layer requirement on top of requirement until the developer loses the plot - or walks out!</p>
+<p>Each iteration starts clean. If the output is off, you adjust the inputs explicitly and run again. That makes failures <em>useful</em> - they tell you something was unclear in the context, not that the AI had a bad day after a long conversation.</p>
+<h3>2. Focus on One Thing at a Time</h3>
+<p>The other key is focus. Each task is clearly defined and narrow. Not "build the dashboard" but "design the data model". Not "add auth" but "define the auth flow and constraints".</p>
+<p>This dramatically reduces hallucinations and off-topic behaviour. The model has less room to wander because the scope is tight.</p>
+<p>If you've ever used Kanban properly, this will feel familiar. One card. One goal. Finish it. Move on. It's not an AI idea - it's a good engineering idea, applied to AI.</p>
+<h2>Why I Built afk</h2>
+<p>I read the articles. I tried the pattern manually with shell scripts. It worked well. But it was fiddly. I wanted something that made the Ralph approach <em>enjoyable</em> - a tool that encouraged people to give it a go.</p>
+<p>That's why I built <strong>afk</strong>.</p>
+<p>It's a small, tool-agnostic CLI that sits outside any specific AI app. It doesn't care if you're using Claude, Cursor, Codex, or something else... It just runs the pattern.</p>
+<p>The workflow is simple:</p>
+<h3>Step 1: Write a PRD</h3>
+<p>This is the most important step. Take an hour or two. Write down what you actually want to build - the problem, the constraints, the expected outcomes. This becomes your source of truth. Work with an AI tool to build it. It should be a collaboration between product teams, engineering teams.</p>
+<pre><code class="language-markdown"># Weather Dashboard
+
+A simple web app showing current weather for a given city.
+
+Users enter a city name and see temperature, conditions, and a 5-day forecast.
+Use the OpenWeather API. UI should be clean and mobile-friendly.
+</code></pre>
+<h3>Step 2: Import and Generate Tasks</h3>
+<pre><code class="language-bash">afk import requirements.md
+</code></pre>
+<p>afk uses your AI CLI to analyse the PRD and break it into small, AI-sized tasks. The output goes to <code>.afk/tasks.json</code>.</p>
+<h3>Step 3: Review the Tasks</h3>
+<p>This step is critical. Run <code>afk tasks</code> and actually read what it generated. Are the tasks the right size? Do they make sense? Is anything missing or misunderstood?</p>
+<p>If the tasks don't look right, you have two options: refine the PRD and re-import, or edit <code>.afk/tasks.json</code> directly. Either way, don't skip this step. The quality of the tasks determines the quality of the output. Garbage in, garbage out.</p>
+<h3>Step 4: Run the Loop</h3>
+<pre><code class="language-bash">afk go        # Start the autonomous loop
+</code></pre>
+<p>afk works through the tasks one by one. Each iteration spawns a <strong>fresh AI instance</strong> with clean context. It implements the task, runs quality gates (lint, test, typecheck), and auto-commits if everything passes. If something fails, it captures learnings and loops.</p>
+<h3>How Memory Persists</h3>
+<p>The Ralph approach isn't about starting from <em>nothing</em> each time. It's about starting with the <em>right</em> context. afk maintains memory through:</p>
+<ul>
+<li><strong>Git history</strong> - Commits from previous iterations</li>
+<li><strong>progress.json</strong> - Task status and per-task learnings (short-term memory)  </li>
+<li><strong>AGENTS.md</strong> files - Project-wide patterns and conventions (long-term memory)</li>
+</ul>
+<p>Crucially, this isn't about piling up endless learnings until they become a novel. It's about keeping AGENTS.md <strong>fresh and focused</strong> - capturing only the key insights that will help the next iteration succeed. The AI is explicitly instructed to curate, not accumulate.</p>
+<h2>A Different Kind of Away</h2>
+<p>The name "afk" isn't just cute - it's the point.</p>
+<p>When you step away from keyboard, you're not abandoning the work. You're giving the AI space to operate without your interference. And you're giving <em>yourself</em> space to think strategically - to talk to product, understand the problem properly, or just take a walk.</p>
+<p>That separation matters. When you come back, you read the output cold, like a code review. You're less attached to it. You spot gaps faster. Your judgement improves.</p>
+<h2>The Pace of Change</h2>
+<p>What's clear right now is that things are moving fast. AI coding tools are evolving by the month, sometimes by the week. What works today might look different tomorrow.</p>
+<p>Even Linus Torvalds - not exactly known for jumping on hype trains - is <a href="https://www.theregister.com/2026/01/13/linus_torvalds_vibe_coding/">experimenting with vibe coding</a>. As he put it at the Open Source Summit Asia: it's fine for projects that don't really matter. For his guitar pedal visualiser, that's the sweet spot.</p>
+<p>The Ralph approach sits somewhere in between pure vibe coding and the traditional interactive chat. It's structured enough for serious work, but hands-off enough to let AI do what it's good at.</p>
+<h2>Try It Out</h2>
+<p>afk is still early. I'm pleased with where it is now, but there will be rough edges. That's fine - I'm experimenting in the open and learning as I go.</p>
+<p>If this sounds interesting, give it a try:</p>
+<h3>Install</h3>
+<pre><code class="language-bash"># macOS / Linux
+curl -fsSL https://raw.githubusercontent.com/m0nkmaster/afk/main/scripts/install.sh | bash
+
+# Windows (PowerShell)
+irm https://raw.githubusercontent.com/m0nkmaster/afk/main/scripts/install.ps1 | iex
+</code></pre>
+<h3>Get Started</h3>
+<p>Collaborate, speak to people, write a PRD you're happy with.</p>
+<pre><code class="language-bash">afk import requirements.md    # Parse your PRD into tasks
+afk tasks                     # Review - refine PRD or edit tasks if needed
+afk go                        # Start the autonomous loop
+</code></pre>
+<p>Pick something real. Preferably something sizeable. Write clear requirements. Review the tasks - don't skip this. Let it run. Step away.</p>
+<p>That's where this approach starts to click.</p>
+<hr />
+<p>To find out more and dive into the detail, take a look on GitHub.</p>
+<p><strong>Repo:</strong> <a href="https://github.com/m0nkmaster/afk">github.com/m0nkmaster/afk</a></p>
+<p>I'd love feedback - especially from people already feeling the limits of chat-based workflows. If something feels awkward, that's useful signal. If something clicks, I want to know why.</p>
+<p>Contributions welcome. Stay curious. Embrace the tools.</p>
+      </div>
+      <p class="orig">Originally published on <a href="https://www.linkedin.com/pulse/afk-laid-back-way-work-ai-bigger-features-rob-macdonald-viewe/" rel="noopener">LinkedIn</a>.</p>
+    </article>
+  </main>
+  <footer class="footer"><a href="/">&larr; robmacdonald.com</a> &middot; &copy; 2026</footer>
+</body>
+</html>

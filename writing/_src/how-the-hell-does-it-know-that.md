@@ -1,0 +1,124 @@
+---
+title: How the hell does it know that?
+description: What a shedload of Markdown files taught me about giving AI context.
+date: 2026-10-08
+original: https://www.linkedin.com/pulse/how-hell-does-know-rob-macdonald-uwgbe
+---
+
+A few weeks ago I was looking at a memory spike on our platform. It wasn't a dramatic one, but it was the kind that makes you squint at a graph and quietly hope it goes away. Nothing on our side had changed. No deploys, no config tweaks, nothing obvious. I genuinely didn't know what was going on.
+
+So I asked my AI.
+
+About a minute later it told me. Someone in another team (let's call him Dave) had added some data in a service ours uses, which, for reasons..., meant our platform was holding a lot more in memory than previously. And it didn't stop there. It knew which change it was and roughly when it landed. It knew the memory profile of our app over the last four weeks, it knew the project Dave was working on, the ticket behind the change, and what he'd said about it at standup.
+
+This wasn't our team's code. It was a good-sized blast radius away, and it understood the lay of the land, who changed what, and why. And of course, how to handle it.
+
+My honest reaction was "how the heck do you know all that?" (I may have used a stronger word.)
+
+#### It's not clever. That's the point
+
+There's a lot of talk at the moment about how to give AI context. RAG pipelines, vector databases, bespoke MCP servers that go and search some data store or other, complex architecture diagrams, I'm sure all of that has its place.
+
+But, purely from working this way day in, day out, I've found that a shedload of Markdown files is ridiculously powerful. Searching files comes completely naturally to AI. It can quite literally grep at will. No embeddings, no infrastructure, no database to keep alive.
+
+What made my AI so well informed wasn't anything special. It comes down to three simple things I've set up on my machine, and every day I'm still surprised by how little context I need to give it.
+
+### 1. Access to where you work
+
+The first is simple: give it access to the same places you have access to.
+
+Our intellectual work happens on a computer. I know we're all going into the office a bit more now, but most of how we communicate, decide and build happens through a screen. And whether we like it or not, it's all recorded somewhere: code, code review comments, tickets, design docs, dashboards, chat threads.
+
+My AI can reach the code, the tickets, the docs, our observability tooling, our data warehouse and our chat. Chat matters more than people expect, because that's where so many decisions actually get made. The design doc says one thing, and the thread three weeks later says "actually, let's not".
+
+If your AI can see what you can see (and only what you can see), it can do a surprising amount of what you can do. That's a massive start.
+
+### 2. A shared, ever-growing memory
+
+The second is a memory that grows.
+
+Pretty much every session I start begins in one folder, which I call the workspace. It has some structure, but it's quite organic. There are documents on ways of working, how to set up applications, my ideas, the projects we're working on, because it's my knowledge base, specific to me. I dictate quite a lot also, so there are my random notes in there... stuff like this doc.
+
+Whatever tool I'm using starts from the same place. I'm not tied to one tool. Claude Code, Cursor, Codex, it doesn't really matter. They all open that folder and they're up and running, because they all have the same context.
+
+This isn't a new idea either. At their core this is how agents like OpenClaw and Hermes work: they take notes in Markdown, and those notes are their memory. That's how they get smarter. Proactively and iteratively, they write things down.
+
+#### I don't read my notes any more
+
+This is the bit that surprised me most. I don't read those notes. I don't really care what's in them.
+
+They're perfectly human-readable, nicely structured documents. But they aren't the product. The product is an AI that knows what the hell is going on in my world.
+
+Think of it like a colleague. If you know something I need, I ask you. I don't go digging around in your brain! That's how I see these files now: they're the AI's brain, and I talk to the AI.
+
+### 3. Gardening
+
+The third is what I've been calling gardening, for want of a better word.
+
+Notes go stale. Projects move. So something needs to keep the memory honest, and that can be as simple as a cron job. Literally.
+
+I coded a tool that runs locally, and it's a glorified cron runner. Each job is just "every x minutes, open the agent, run this skill". That's it. The skills can do anything, because they're just skills sitting in the workspace. A few that run for me:
+
+- Incidents: check chat for any incidents occuring, and if there are any, write them up and let me know.
+
+- Support: look at what's happening in our support channel, and tell me if there's anywhere I could genuinely help.
+
+- Refreshing pages: take a stale project page from the workspace, check chat and any updated docs, and refresh what we know. I don't know it's happening. It just happens.
+
+- Improving the skills themselves: this is the one that gets interesting - self learning. It reads my session history with the agents (which are largely just JSON files on disk), looks at how I've actually been working, and decides whether any skills should change. Including itself. 😬
+
+On top of that, an everyday skills I have installed has a simple instruction: if you learn something that isn't written down, write it down. So the memory grows as a side effect of normal work, without me knowing or caring.
+
+The result is a knowledge base being groomed, refreshed and improved, completely without me doing anything.
+
+### Files and skills, not software
+
+The architecture is intentionally boring. My operating model is basically:
+
+> **Markdown files, skills, cron**
+
+Anything that starts to feel like software, I want as a skill. Anything that's knowledge, I want as a file. I don't want to deploy a DynamoDB table somewhere. I just want documents and skills.
+
+The reason is that the best way to work with these models keeps changing. If I'd built a load of code around how one tool works today, it would be brittle, and it would probably be wrong in six months. Files and skills move between tools and survive new models. The only real code I have is the cron runner - which is tiny, and a couple of custom [MCPs](https://github.com/m0nkmaster/msteams-mcp) and [CLIs](https://github.com/search?q=owner%3Am0nkmaster+cli&type=repositories) for accessing services which didn't have them.
+
+### What I haven't figured out
+
+I don't want to oversell this. There are things I haven't cracked:
+
+Wrong notes are worse than no notes. If something in the memory is wrong, the AI will repeat it with total confidence. Regular gardening helps a lot, but it's still an AI checking an AI's homework.
+
+Skills rewriting skills is a bit unnerving. "I don't know it's happening" is both the point and the worry. Am I creating a monster? Will it decide to hack [Hugging face](https://openai.com/index/hugging-face-incident-and-the-road-ahead/)?
+
+It lives on my laptop. It stops when I close the lid, and it doesn't help anyone else.
+
+Access raises real questions. An AI that can read everywhere you work should prompt questions about who sees what. Answer those with your security people, not on your own.
+
+### Where this goes: a shared brain
+
+This is the part I'm really excited about. Right now this is my brain on my machine. I now want everyone to benefit.
+
+The idea of a "company brain" or company vault is becoming a fairly established concept for teams trying to get the most out of AI. A shared memory that everyone's AI reads from and everyone's AI contributes to, covering both technical and non-technical knowledge.
+
+Picture a new joiner. They open their AI harness, add one skill, and say "help me get onboarded". It walks them through everything. The team's objectives for the year, the recent incidents, laptop setup, how to get a service account, what we've shipped and how often we release. Not because it's clever, but because a set of Markdown files has been added to, updated, groomed and refreshed all the time, based on everyone's interactions with it.
+
+It also changes what agents can do. Today an agent picking up a ticket gets the ticket, the codebase and whatever guidance lives in the repo. With a shared brain, it also knows about the discussion last week where someone pushed back on exactly this approach, and that a person in another team dealt with the same problem two years ago and is worth talking to.
+
+That's tribal knowledge. The stuff you'd know if you'd worked somewhere for ten years. It's exactly the knowledge an agent needs, and it's exactly what found Dave's change in a minute.
+
+A colleague and I have started on this: a shared repo of skills plus a vault of knowledge, with a skill that reads from and writes to it. There's already a handful of project pages their that none of us know anything about. But they are spot on! I'm honestly not sure it's the right implementation yet. But the idea feels right.
+
+### Try it out
+
+You don't need a platform for this, you don't need an engineer. Start small:
+
+1. Make a folder. Start every AI session in it, and connect your AI to the places you already work. Either through MCPs, CLIs, whatever is available to you.
+
+2. Add one line to your agent instructions: "If you learn something that isn't written down here, write it down here."
+
+3. Schedule one gardening skill overnight. Pick a page, have it check what's changed in your chat and docs, and update it.
+
+Then stop reading the notes, and just ask.
+
+And Dave, if you're reading this: no hard feelings. The AI told on you, not me. 😉
+
+<div class="article-social-activity z-[201]

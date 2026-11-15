@@ -1,0 +1,151 @@
+:root {
+  --bg: #0a0a0b;
+  --surface: #18181b;
+  --border: #333340;
+  --text: #f4f4f5;
+  --text-body: #d4d4d8;
+  --text-muted: #8b8b94;
+  --orange: #ff5500;
+  --cyan: #00c8ff;
+  --mono: 'JetBrains Mono', ui-monospace, monospace;
+  --serif: 'Source Serif 4', Georgia, serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--bg);
+  color: var(--text-body);
+  font-family: var(--serif);
+  font-size: 1.125rem;
+  line-height: 1.7;
+  background-image:
+    radial-gradient(circle at 20% 80%, rgba(255, 85, 0, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(0, 200, 255, 0.03) 0%, transparent 50%);
+  background-attachment: fixed;
+}
+
+a { color: var(--orange); text-underline-offset: 3px; }
+a:hover { color: var(--cyan); }
+
+.top, main, .footer { max-width: 42rem; margin: 0 auto; padding: 0 1.5rem; }
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding-top: 2rem;
+  padding-bottom: 3rem;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.top a { color: var(--text); text-decoration: none; }
+.top a:hover { color: var(--orange); }
+.top .nav { color: var(--text-muted); }
+.accent { color: var(--orange); }
+
+.meta, .lede, .orig, time { font-family: var(--mono); }
+.meta { font-size: 0.7rem; color: var(--text-muted); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1rem; }
+
+h1 {
+  font-family: var(--mono);
+  color: var(--text);
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  margin-bottom: 1rem;
+}
+.lede {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  padding-bottom: 2rem;
+  margin-bottom: 2.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.prose > * + * { margin-top: 1.25rem; }
+.prose h2, .prose h3, .prose h4, .prose h5 {
+  font-family: var(--mono);
+  color: var(--text);
+  line-height: 1.35;
+  margin-top: 2.75rem;
+}
+.prose h2 { font-size: 1.25rem; }
+.prose h3 { font-size: 1.1rem; }
+.prose h4, .prose h5 { font-size: 1rem; }
+.prose :is(h2, h3, h4, h5) + * { margin-top: 0.75rem; }
+.prose strong { color: var(--text); }
+.prose ul, .prose ol { padding-left: 1.4rem; }
+.prose li + li { margin-top: 0.5rem; }
+.prose li::marker { color: var(--orange); }
+.prose blockquote {
+  border-left: 3px solid var(--orange);
+  padding-left: 1.25rem;
+  color: var(--text);
+  font-style: italic;
+}
+.prose code {
+  font-family: var(--mono);
+  font-size: 0.85em;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 0.1em 0.35em;
+}
+.prose pre {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1rem 1.25rem;
+  overflow-x: auto;
+  line-height: 1.5;
+}
+.prose pre code { background: none; border: 0; padding: 0; font-size: 0.8rem; }
+.prose hr { border: 0; border-top: 1px solid var(--border); margin: 2.5rem 0; }
+.prose img { max-width: 100%; height: auto; border-radius: 4px; border: 1px solid var(--border); }
+.prose figure { margin: 2rem 0; }
+.prose figcaption { font-family: var(--mono); font-size: 0.7rem; color: var(--text-muted); text-align: center; margin-top: 0.5rem; }
+
+.orig {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+.index-title { margin-bottom: 2rem; }
+.list { display: flex; flex-direction: column; gap: 0.75rem; }
+.item {
+  display: block;
+  padding: 1.25rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+.item:hover { border-color: var(--orange); box-shadow: 0 0 20px rgba(255, 85, 0, 0.1); }
+.item time { font-size: 0.65rem; color: var(--text-muted); letter-spacing: 0.1em; text-transform: uppercase; }
+.item h2 { font-family: var(--mono); font-size: 0.95rem; color: var(--text); margin: 0.4rem 0; }
+.item:hover h2 { color: var(--orange); }
+.item p { font-family: var(--mono); font-size: 0.7rem; color: var(--text-muted); line-height: 1.6; }
+
+.footer {
+  padding-top: 4rem;
+  padding-bottom: 3rem;
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+}
+.footer a { color: var(--text-muted); text-decoration: none; }
+.footer a:hover { color: var(--orange); }
+
+@media (max-width: 600px) {
+  body { font-size: 1.05rem; }
+}
