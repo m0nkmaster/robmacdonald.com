@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-M8LV8Z5P');</script>
   <meta charset="UTF-8">
@@ -15,7 +15,7 @@
       --surface: #18181b;
       --border: #333340;
       --text: #f4f4f5;
-      --text-muted: #71717a;
+      --text-muted: #a1a1aa;
       --orange: #ff5500;
       --cyan: #00c8ff;
     }
@@ -40,8 +40,10 @@
     }
 
     .container {
+      width: 100%;
+      max-width: 1080px;
       text-align: center;
-      padding: 2rem;
+      padding: clamp(1.25rem, 4vw, 3rem);
     }
 
     h1 {
@@ -66,7 +68,8 @@
 
     .links {
       display: flex;
-      flex-direction: column;
+      flex-wrap: wrap;
+      justify-content: center;
       gap: 1rem;
       align-items: center;
     }
@@ -115,10 +118,51 @@
       fill: var(--cyan);
     }
 
-    .articles {
+    .content {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 2.5rem;
       margin-top: 3rem;
+    }
+
+    .articles {
+      min-width: 0;
       text-align: left;
-      max-width: 400px;
+    }
+
+    @media (min-width: 800px) {
+      .content {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 2rem;
+      }
+    }
+
+    @media (max-width: 399px) {
+      h1 {
+        font-size: 1.25rem;
+        letter-spacing: 0.05em;
+      }
+
+      .link {
+        min-width: 0;
+        flex: 1 1 120px;
+        padding-inline: 1rem;
+      }
+    }
+
+    a:focus-visible {
+      outline: 2px solid var(--orange);
+      outline-offset: 4px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .link, .article {
+        transition: none;
+      }
+
+      .link:hover {
+        transform: none;
+      }
     }
 
     .section-title {
@@ -147,7 +191,9 @@
     }
 
     .article-title {
-      font-size: 0.75rem;
+      font-size: 0.875rem;
+      line-height: 1.5;
+      overflow-wrap: anywhere;
       font-weight: 700;
       color: var(--text);
       margin-bottom: 0.5rem;
@@ -167,7 +213,7 @@
     }
 
     .article-desc {
-      font-size: 0.625rem;
+      font-size: 0.8125rem;
       color: var(--text-muted);
       line-height: 1.6;
     }
@@ -239,6 +285,7 @@
       </a>
     </nav>
     
+    <main class="content">
     <section class="articles">
       <h2 class="section-title">Writing</h2>
       
@@ -304,6 +351,8 @@
       </a>
     </section>
     
+    </main>
+
     <footer class="footer">
       © 2026
     </footer>
